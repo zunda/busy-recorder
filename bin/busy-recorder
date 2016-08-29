@@ -1,7 +1,14 @@
 #!/bin/bash
-interval=10
+# treashold to record top (1 minute load average)
 th=2.0
+
+# check interval (sec)
+interval=30
+
+# display width for top command (columns)
 cols=120
+
+# tag of records to go with syslog
 tag=busy-recorder
 
 t=$th
