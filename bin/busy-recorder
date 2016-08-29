@@ -1,0 +1,12 @@
+#!/bin/bash
+interval=10
+th=2.0
+cols=120
+tag=busy-recorder
+
+while [ 1 ]; do
+	cat /proc/loadavg | awk "{if(\$1>$th){exit 0}else{exit 1}}" &&\
+	top -b -n 1 -w $cols | head | \
+	{ cat -; echo ---; } | logger -e -s -t $tag
+	sleep $interval
+done
