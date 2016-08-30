@@ -16,7 +16,7 @@ while [ 1 ]; do
 	x=`cat /proc/loadavg | awk '{print($1)}'`
 	awk "BEGIN{if($x>$t){exit 0}else{exit 1}}" &&\
 		top -b -n 1 -w $cols | head | \
-		{ cat -; echo ---; } | logger -e -s -t $tag
+		{ cat -; echo ---; } | logger -e -t $tag
 	t=`awk "BEGIN{if($x<$th){print($th)}else{if($x<$t){print($t)}else{print($x)}}}"`
 	sleep $interval
 done
